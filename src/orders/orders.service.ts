@@ -33,6 +33,7 @@ export class OrdersService {
         warehouseId: line.warehouseId,
       })), // [{sku, qty, warehouseId}]
     });
+    console.log(`Order ID: ${orderId}, Version: ${version}`);
     return { ok: true };
   }
 

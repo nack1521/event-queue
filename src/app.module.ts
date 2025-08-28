@@ -9,6 +9,7 @@ import { OrdersModule } from './orders/orders.module';
 import { WarehouseStockModule } from './warehouse-stock/warehouse-stock.module';
 import { ReservePackingModule } from './reserve-packing/reserve-packing.module';
 import { LogModule } from './log/log.module';
+import { STOCK_QUEUE } from './stock-queue/stock.queue';
 
 @Module({
   imports: [
@@ -33,6 +34,10 @@ import { LogModule } from './log/log.module';
           removeOnFail: 1000,
         },
       }),
+      
+    }),
+    BullModule.registerQueue({
+      name: STOCK_QUEUE, // Make sure this matches 'stockQueue'
     }),
     StockQueueModule,
     OrdersModule,

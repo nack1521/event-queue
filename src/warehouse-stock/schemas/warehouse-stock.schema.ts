@@ -9,8 +9,8 @@ export class WarehouseStock {
     @Prop({ type: String, required: true })
     warehouseId!: string;
 
-    @Prop({ required: true, default: 0, type: Number })
-    sku!: number;
+    @Prop({ required: true, default: 0, type: String })
+    sku!: string;
 
     @Prop({ required: true, default: 0, min: 0, type: Number })
     onHand!: number;

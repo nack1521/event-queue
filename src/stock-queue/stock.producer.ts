@@ -30,5 +30,6 @@ export class StockProducer {
     async enqueue(event: StockEvent) {
         const jobId = `${event.type}:${event.orderId}:${event.version}`;
         await this.queue.q.add(event.type, event, { jobId });
+        console.log(`Enqueued job: ${jobId}`);
     }
 }

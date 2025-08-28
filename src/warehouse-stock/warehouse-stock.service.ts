@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CreateWarehouseStockDto } from './dto/create-warehouse-stock.dto';
 import { UpdateWarehouseStockDto } from './dto/update-warehouse-stock.dto';
+import { WarehouseStock, WarehouseStockDocument } from './schemas/warehouse-stock.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class WarehouseStockService {
-  create(createWarehouseStockDto: CreateWarehouseStockDto) {
-    return 'This action adds a new warehouseStock';
+  constructor(
+    @InjectModel(WarehouseStock.name) private warehouseStockModel: Model<WarehouseStockDocument>,
+  ) {}
+
+  async create(createWarehouseStockDto: CreateWarehouseStockDto): Promise<WarehouseStock> {
+    const createdStock = new this.warehouseStockModel(createWarehouseStockDto);
+    return await createdStock.save();
   }
 
   findAll() {
